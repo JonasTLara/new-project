@@ -1,0 +1,9 @@
+.background {
+    background-image: url('./public/Home.png');
+    background-size: cover; /* Ou 'contain', dependendo da aparência desejada */
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Certifique-se de que a altura cubra toda a visualização */
+    width: 100%;
+  }
+  

@@ -6,8 +6,28 @@ import {
   InvoicesTable,
   LatestInvoiceRaw,
   Revenue,
+  CarrocelEventosForm,
 } from './definitions';
 import { formatCurrency } from './utils';
+
+export async function fetchCarrocelEventosForm() {
+  try {
+    const data = await sql<CarrocelEventosForm>`
+      SELECT id, nome, informacoes_gerais, data, link_imagem
+    FROM evento 
+    ORDER BY data desc 
+    LIMIT 5 ;
+    `;
+
+    console.log(data, 'ai meu jesus');
+
+    return data.rows;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch invoices.');
+  }
+}
+
 
 export async function fetchRevenue() {
   try {
@@ -34,7 +54,7 @@ export async function fetchLatestInvoices() {
       SELECT invoices.amount, customers.name, customers.image_url, customers.email, invoices.id
       FROM invoices
       JOIN customers ON invoices.customer_id = customers.id
-      ORDER BY invoices.date DESC
+      ORDER BY invoices.date
       LIMIT 5`;
 
     const latestInvoices = data.rows.map((invoice) => ({

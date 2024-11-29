@@ -86,3 +86,11 @@ export type InvoiceForm = {
   amount: number;
   status: 'pending' | 'paid';
 };
+
+export type CarrocelEventosForm = {
+  id: string;
+  nome: string;
+  informacoes_gerais: string;
+  data: string;
+  link_imagem: string;
+};

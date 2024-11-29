@@ -3,25 +3,32 @@ import { Card } from '@/app/ui/dashboard/cards';
 import RevenueChart from '@/app/ui/dashboard/revenue-chart';
 import LatestInvoices from '@/app/ui/dashboard/latest-invoices';
 import { lusitana } from '@/app/ui/fonts';
-import { fetchRevenue, fetchLatestInvoices, fetchCardData, fetchCarrocelEventosForm } from '@/app/lib/data';
+import { fetchRevenue, fetchLatestInvoices, fetchCardData } from '@/app/lib/data';
 import '@/app/ui/events/styles.css';
-import '@/app/styles.css';
+import '@/app/events/styles.css';
 import { useState, useEffect } from 'react';
-import { CarrocelEventosForm } from '@/app/lib/definitions';
 
 export default function Page() {
-  const [events, setEvents] = useState<CarrocelEventosForm[]>([]);
-  const [currentEvent, setCurrentEvent] = useState(0);
-
-  useEffect(() => {
-    async function fetchData() {
-      const carrocel = await fetchCarrocelEventosForm();
-      setEvents(carrocel);
+  const events = [
+    {
+      image: '/path/to/image1.jpg',
+      description: 'Descrição do Evento 1'
+    },
+    {
+      image: '/path/to/image2.jpg',
+      description: 'Descrição do Evento 2'
+    },
+    {
+      image: '/path/to/image3.jpg',
+      description: 'Descrição do Evento 3'
+    },
+    {
+      image: '/path/to/image4.jpg',
+      description: 'Descrição do Evento 4'
     }
-    fetchData();
-  }, []);
+  ];
 
-  console.log(events);
+  const [currentEvent, setCurrentEvent] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -42,14 +49,13 @@ export default function Page() {
       </header>
       <main className="background">
         <div className="central-div">
-          {events.length > 0 && (
-            <div className="event-carousel">
-              <img src={events[currentEvent].link_imagem} alt={`Imagem do ${events[currentEvent].informacoes_gerais}`} className="carousel-image" />
-              <p className="carousel-description">{events[currentEvent].informacoes_gerais}</p>
-            </div>
-          )}
+          <div className="event-carousel">
+            <img src={events[currentEvent].image} alt={`Imagem do ${events[currentEvent].description}`} className="carousel-image" />
+            <p className="carousel-description">{events[currentEvent].description}</p>
+          </div>
         </div>
       </main>
     </div>
   );
 }
+

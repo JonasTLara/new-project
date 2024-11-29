@@ -5,3 +5,11 @@
     border-left: 20px solid transparent;
     border-right: 20px solid transparent;
   }
+
+  .background {
+    background-image: url('@/public/Home.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Certifique-se de que a altura cubra toda a visualização */
+    width: 100%;
+  }
